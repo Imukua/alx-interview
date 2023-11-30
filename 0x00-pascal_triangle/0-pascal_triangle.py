@@ -7,7 +7,7 @@ def pascal_triangle(n):
     args:: n(int) - number to get pascals triangle
     return:: 
             - list of lists of integers representing the Pascal’s triangle of n
-            - empty if n <= zero
+            - empty iff n <= zero
     """
     ptriangle = []
 
