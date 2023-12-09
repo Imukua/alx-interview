@@ -1,25 +1,25 @@
 #!/usr/bin/python3
-def canUnlockAll(boxes):
-    """
-    Determines if all the boxes can be opened.
+'''Unlockability of secured containers.
+'''
 
-    Parameters:
-    boxes (list): A list of lists where each list represents a box and contains keys.
 
-    Returns:
-    bool: True if all boxes can be opened, else False.
-    """
+def isUnlockableContainers(containerList):
+    '''Checks if all the containers in a list of boxes containing the access
+    keys (indices) to other containers can be unlocked, assuming that the first
+    container is already unlocked.
+    '''
+    numContainers = len(containerList)
+    visitedContainers = set([0])
+    unvisitedContainers = set(containerList[0]).difference(set([0]))
 
-    unlocked = set([0])
+    while len(unvisitedContainers) > 0:
+        currentContainerIdx = unvisitedContainers.pop()
 
-    stack = [key for key in boxes[0]]
+        if not currentContainerIdx or currentContainerIdx >= numContainers or currentContainerIdx < 0:
+            continue
 
-    while stack:
-        key = stack.pop()
+        if currentContainerIdx not in visitedContainers:
+            unvisitedContainers = unvisitedContainers.union(containerList[currentContainerIdx])
+            visitedContainers.add(currentContainerIdx)
 
-        if key < len(boxes) and key not in unlocked:
-            unlocked.add(key)
-
-            stack.extend(boxes[key])
-
-    return len(unlocked) == len(boxes)
+    return numContainers == len(visitedContainers)
