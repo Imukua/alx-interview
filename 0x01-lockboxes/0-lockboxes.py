@@ -1,25 +1,22 @@
 #!/usr/bin/python3
-'''Unlockability of secured containers.
+'''
+lockboxes interview question
 '''
 
 
-def isUnlockableContainers(containerList):
-    '''Checks if all the containers in a list of boxes containing the access
-    keys (indices) to other containers can be unlocked, assuming that the first
-    container is already unlocked.
+def canUnlockAll(boxes):
     '''
-    numContainers = len(containerList)
-    visitedContainers = set([0])
-    unvisitedContainers = set(containerList[0]).difference(set([0]))
-
-    while len(unvisitedContainers) > 0:
-        currentContainerIdx = unvisitedContainers.pop()
-
-        if not currentContainerIdx or currentContainerIdx >= numContainers or currentContainerIdx < 0:
+    Checks if the boxes in a list of boxes containing the keys
+     to other boxes can be unlocked
+    '''
+    n = len(boxes)
+    seen_boxes = set([0])
+    unseen_boxes = set(boxes[0]).difference(set([0]))
+    while len(unseen_boxes) > 0:
+        boxIdx = unseen_boxes.pop()
+        if not boxIdx or boxIdx >= n or boxIdx < 0:
             continue
-
-        if currentContainerIdx not in visitedContainers:
-            unvisitedContainers = unvisitedContainers.union(containerList[currentContainerIdx])
-            visitedContainers.add(currentContainerIdx)
-
-    return numContainers == len(visitedContainers)
+        if boxIdx not in seen_boxes:
+            unseen_boxes = unseen_boxes.union(boxes[boxIdx])
+            seen_boxes.add(boxIdx)
+    return n == len(seen_boxes)
