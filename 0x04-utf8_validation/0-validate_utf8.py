@@ -19,7 +19,6 @@ def validUTF8(data):
     for byte in data:
         leading_one_mask = 1 << 7
 
-
         if expected_continuation_bytes == 0:
             while leading_one_mask & byte:
                 expected_continuation_bytes += 1
@@ -27,7 +26,6 @@ def validUTF8(data):
 
             if expected_continuation_bytes == 0:
                 continue
-
 
             if expected_continuation_bytes == 1 or\
                     expected_continuation_bytes > 4:
