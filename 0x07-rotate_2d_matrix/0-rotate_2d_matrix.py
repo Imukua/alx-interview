@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""rotation of atrix
+"""
+matrix rotation
 """
 
 
 def transpose_matrix(matrix, n):
     """
 
-    Args:
+    Arg:
         matrix (_type_): _description_
     """
     for i in range(n):
@@ -17,7 +18,7 @@ def transpose_matrix(matrix, n):
 def reverse_matrix(matrix):
     """
 
-    Args:
+    Arg:
         matrix (_type_): _description_
     """
     for row in matrix:
@@ -27,12 +28,12 @@ def reverse_matrix(matrix):
 def rotate_2d_matrix(matrix):
     """
 
-    Args:
+    Arg:
         matrix (_type_): _description_
     """
     n = len(matrix)
 
-    """sample matrix
+    """sample 
     1 2 3
     4 5 6
     7 8 9
